@@ -1,12 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToDoList 360</title>
-</head>
-<body>
-  
-</body>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#41414C" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+    <title>ToDoList 360</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/partials/page-header.css" />
+    <link rel="stylesheet" href="/styles/partials/cards.css" />
+    <link rel="stylesheet" href="/styles/partials/buttons.css" />
+    <link rel="stylesheet" href="/styles/partials/modal.css" />
+    <link rel="stylesheet" href="/styles/partials/animations.css" />
+    <link rel="stylesheet" href="/styles/pages/index.css" />
+
+    <!-- Link Fonte - IBM Plex Sans e Inter -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="scripts/index.js" defer type="module"></script>
+  </head>
+
+  <!-- Pagina Home -->
+  <body id="page-index">
+
+    <!-- Cabeçalho -->
+    <header class="page-header">
+      <!-- Container do header-->
+      <div class="container">
+        
+        <!-- Seção Inicial - Superior -->
+        <section id="top" class="animate-up">
+          <h2 class="only-recommendation">Homepage</h2>
+          
+          <!--Logo-->
+          <img id="logo" src="./images/logo.svg" alt="Logo"/>
+          
+          <span id="info-ToDo360">
+            <img src="./images/alert-octagon.svg" alt="Alerta" />
+            ToDoList V360
+            <img id = "pacman" src="./images/PACMAN.svg" alt="Alerta" />
+          </span>
+          
+          <!-- Subseção - Profile -->
+          <a href="profile.html" id="avatar-profile">
+            <p>Filipe <span>Ver perfil</span> </p>
+            <img
+              src="https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1642942800&v=beta&t=BbYtqtcyBtMeNynTd7BI9BDlJWTRGICRel4NR9D34zk"
+            />
+          </a>
+        </section>
+        
+        <!-- Linha - Separação -->
+        <div class="separator"></div>
+
+        <!-- Sumario - Informações e adicionar -->
+        <section id="summary" class="animate-up delay-1">
+          <h2 class="only-recommendation">Sumário</h2>
+
+          <!-- Informações sobre as listas e itens -->
+          <div class="container-info">
+            <div class="total">
+              <strong>12</strong>
+              Tarefas ao total
+            </div>
+          
+            <div class="in-progress">
+              <strong>7</strong>
+              Pendentes
+            </div>
+            
+            <div class="finished">
+              <strong>4</strong>
+              Feitas
+            </div>
+          </div>
+
+          <!-- Button - Add new List -->
+          <a class="button orange" href="">
+            <span>
+              <img src="./images/plus-24.svg" alt="Novo Job" /> 
+            </span>
+            Adicionar uma lista
+          </a>
+        </section>
+      </div>
+    </header>
+
+    
+  </body>
 </html>

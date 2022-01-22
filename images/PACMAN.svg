@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Gerado pelo Microsoft Visio, SVG Export teste.svg Página-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="5.26065in" height="5.76419in"
+		viewBox="0 0 378.767 415.022" xml:space="preserve" color-interpolation-filters="sRGB" class="st2">
+	<v:documentProperties v:langID="1046" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#fd7e14;stroke:none;stroke-linecap:butt;stroke-width:0.0612}
+		.st2 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Página-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="9"
+				v:shadowOffsetY="-9"/>
+		<g id="shape3-1" v:mID="3" v:groupContext="shape" transform="translate(0,415.022) scale(1,-1)">
+			<title>Planilha.3</title>
+			<path d="M182.99 413.61 C137.48 408.45 96.89 389.45 64.99 358.36 C21.59 316.02 0 256.43 6.57 196.84 C9.15 173.49 14.43
+						 154.84 24.75 133.26 C67.45 44.11 170.56 0 263.93 30.85 C302.05 43.4 335.01 66.63 359.53 98.18 C368.45 109.68
+						 378.77 126.81 377.83 128.33 C377.48 128.92 342.87 149.1 300.88 173.26 C259 197.3 224.63 217.36 224.63 217.71
+						 C224.63 218.06 259 238.12 300.88 262.17 C342.87 286.33 377.48 306.51 377.83 307.1 C378.77 308.62 368.45
+						 325.63 359.53 337.24 C328.56 377.01 284.81 403.28 234.6 411.85 C221.47 414.08 195.43 415.02 182.99 413.61
+						 ZM233.2 393.09 C269.92 386.64 302.65 369.63 329.16 343.23 C338.78 333.73 352.5 316.61 352.5 314.38 C352.5
+						 313.79 315.2 291.97 269.8 265.93 C224.29 239.78 187.1 218.19 187.1 217.72 C187.1 217.37 224.29 195.67 269.8
+						 169.51 C315.2 143.47 352.5 121.65 352.5 121.06 C352.62 117.42 330.91 92.68 318.83 82.58 C261.94 35.19 184.17
+						 26.4 120.24 60.06 C70.73 86.22 37.07 131.85 26.87 186.63 C23.82 202.82 23.82 232.62 26.87 248.8 C33.56 285.05
+						 50.45 316.95 76.25 342.65 C91.15 357.54 103.35 366.58 120.47 375.49 C139.95 385.58 162.47 392.38 184.17
+						 394.85 C196.37 396.14 220.18 395.32 233.2 393.09 Z" class="st1"/>
+		</g>
+	</g>
+</svg>

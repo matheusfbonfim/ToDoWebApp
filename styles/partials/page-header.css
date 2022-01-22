@@ -1,0 +1,11 @@
+
+/* -------------------------------------------------- */
+/* CABEÇALHOS DAS PÁGINAS*/
+/* -------------------------------------------------- */
+
+.page-header{
+  background: var(--color-primary);
+  width: 100vw;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}

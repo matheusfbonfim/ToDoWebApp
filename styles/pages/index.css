@@ -1,0 +1,151 @@
+/* -------------------------------------------------- */
+/* CABEÇALHO PRINCIPAL*/
+/* -------------------------------------------------- */
+#top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logo{
+  width: 250px;
+  height: 70px;
+}
+
+/* Info - Cabeçalho*/
+/* -------------------------------------------------- */
+#info-ToDo360{
+  display: flex;
+  align-items: center;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#info-ToDo360 img{ 
+  margin-right: 0.5rem; /*8 px de 16px*/
+}
+
+#pacman{
+  width: 20px;
+  height: 20px;
+  margin-left: 0.5rem;
+}
+
+/* Subseção do perfil*/
+/* -------------------------------------------------- */
+#avatar-profile{
+  display: flex;
+  align-items: center;
+  color: var(--color-white);
+  text-decoration: none;
+
+  font-family: IBM Plex Sans;
+  text-align: right;
+}
+
+#avatar-profile p{
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  margin-right: 1.25rem;
+}
+
+#avatar-profile span{
+  display: block;
+  
+  font-weight: 0.875rem; /*14 px de 16px padrão*/
+  line-height: 1.5rem; /*24px de 16px padrão*/
+
+  font-weight: 400;
+
+}
+
+#avatar-profile img {
+  width: 4rem; /* 64px de 16px root*/
+  height: 4rem; /* 64px of 16px root*/
+  border-radius: 50%;
+  border: 0.2rem solid var(--color-secondary); /* 2.5px of 16px root*/
+}
+
+#avatar-profile p span:hover{
+  /*Ao passar o mouse por cima do Ver perfil*/
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+/* -------------------------------------------------- */
+/* SUMÁRIO - CABEÇALHO */
+/* -------------------------------------------------- */
+#summary{
+  margin-top: 2rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*Container das informações do sumário*/
+/* -------------------------------------------------- */
+#summary .container-info{
+  display: flex;
+  flex-direction: row;
+  font-family: Inter;
+
+  margin-bottom: 2rem; 
+}
+
+.container-info > div{
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.625rem;
+
+  margin-right: 2.5rem; /* 40 px de 16 px padrão*/
+}
+
+.container-info > div  > strong{
+    display: block; /*Ocupa uma linha todas */
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+}
+
+/*Container do button do sumário*/
+/* -------------------------------------------------- */
+#summary .button{
+    padding: 0.75rem 1.25rem 0.75rem 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Antes de adicionar - Estilo botao*/
+#summary .button span::before{
+  width: 2rem;
+  height: 2rem;
+  content: " "; /*Necessario colocar conteudo dentro do span*/
+  background-color: var(--color-background);
+  opacity: 0.16;
+  border-radius: 0.313rem; /* 5px de 16px */
+  
+  position: absolute;
+}
+
+/* Button + (Caracteristica de botão exclusiva do sumario) */
+#summary .button span {
+  width: 2rem;
+  height: 2rem;
+
+  margin-right: 2rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#summary .button span img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+

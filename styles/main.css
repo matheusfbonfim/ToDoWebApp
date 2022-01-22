@@ -1,0 +1,57 @@
+/* Removendo estilo padrão do HTML */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* Variaveis CSS */
+:root {
+  --color-background: #F0F2F5;
+  --color-text: #FCFDFF;
+
+  --color-primary: #2C1A55;
+  --color-secondary: #fb7b14;
+
+  --color-hairline-in-dark: #4F4F5B;
+
+}
+
+body {
+  background: var(--color-background);
+}
+
+body,
+input,
+button,
+textarea{
+  font: 500 1rem Inter;
+  color: var(--color-text);
+}
+
+
+/* Classes Básica */
+
+.container {
+  width: min(1440px, 90vw); /*Defininido tamanho para o container principal*/
+  margin: 0 auto; /* Centralizando */
+}
+
+.only-recommendation{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px; 
+  /*Caso ultrapasse o conteudo, esconder*/
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--color-hairline-in-dark);
+  margin: 1rem 0;
+}
+
+

@@ -1,0 +1,40 @@
+/* -------------------------------------------------- */
+/* DIFERENTES ESTILOS DE BOTÕES*/
+/* -------------------------------------------------- */
+
+/* Estilo geral para o botão*/
+/* -------------------------------------------------- */
+.button{
+  padding: 0.75rem 3rem;
+  border-radius: 0.313rem; 
+  border: 0;
+
+  font-family:IBM Plex Sans;
+  font-weight: 700;
+  font-size:0.875rem;
+  line-height: 1.625rem;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.button {
+  line-height: 1.5rem;
+}
+
+/*Botões laranjas*/
+.button.orange{
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+/*Passando o mouse no botão laranja*/
+.button.orange:hover {
+  background: #FA9C2D;
+}
+
+
