@@ -16,6 +16,10 @@
 
   --color-hairline-in-dark: #4F4F5B;
 
+  --color-cancel: #E1E3E5;
+  --color-delete: #EB3B35; 
+  --color-save: #36B336;
+
 }
 
 body {

@@ -1,0 +1,63 @@
+/* -------------------------------------------------- */
+/* LISTAS */
+/* -------------------------------------------------- */
+
+/* Estrutura do container list*/
+.list{
+  /*Largura do container list*/
+  max-width: 1000px;
+  
+  /*Direção do elementes*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--color-text);
+  border-radius: 0.313rem;
+  border: 1px solid #E1E3E6;
+  color: #5A5A66;
+  text-align: left;
+}
+
+
+/*Cabeçalho da lista*/
+.header-list{
+  /*Definindo altura*/
+  height: 80px;
+  padding: 1.5rem; /*24px de 16px root*/
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10rem;
+
+  border-radius: 0.313rem 0.313rem 0 0;
+  border-color: var(--color-primary);
+
+  background: var(--color-primary);
+}
+
+/*Title da lista*/
+.name-list {
+  font-family: IBM Plex Sans;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1.5rem; /*24 px de 16px root*/
+  line-height: 2.125rem;
+  width: 10rem;
+  
+}
+
+/* Id da lista*/
+.header-list .id{
+  width: 2rem;
+  height: 2rem;
+  content: " "; /*Necessario colocar conteudo dentro do span*/
+  opacity: 0.16;
+  border-radius: 0.313rem; /* 5px de 16px */
+  
+  position: absolute;
+}

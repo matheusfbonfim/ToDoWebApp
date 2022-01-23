@@ -1,6 +1,7 @@
 /* -------------------------------------------------- */
 /* CABEÇALHO PRINCIPAL*/
 /* -------------------------------------------------- */
+
 #top{
   display: flex;
   flex-direction: row;
@@ -9,7 +10,7 @@
 }
 
 #logo{
-  width: 250px;
+  width: 270px;
   height: 70px;
 }
 
@@ -149,3 +150,35 @@
   height: 1.5rem;
 }
 
+
+
+/* -------------------------------------------------- */
+/* PRINCIPAL - TODO CONTEÚDO ABAIXO DO CABEÇALHO */
+/* -------------------------------------------------- */
+main {
+  margin-top: -2.825rem;
+}
+
+/* -------------------------------------------------- */
+/* LISTA */
+/* -------------------------------------------------- */
+.lists{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  
+  gap: 5rem; /*80px de 16 px root*/
+
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar{
+  height: 10px;
+  width: 10px;
+  background: gray;
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: var(--color-primary);
+  border-radius: 10px;
+}
