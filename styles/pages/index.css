@@ -166,7 +166,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   
   gap: 5rem; /*80px de 16 px root*/
 
