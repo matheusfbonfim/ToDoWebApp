@@ -7,6 +7,10 @@ const server = express();
 // Importando rotas
 const routes = require('./routes')
 
+// Motor de visualização - Processamento do HTML
+server.set('view engine', 'ejs')
+
+
 // Middlewware ("Homem no meio" -> Entre o get)
 // Habilita os arquivos estáticos
 // Servidor cria rota automatico para os arquivos públicos
