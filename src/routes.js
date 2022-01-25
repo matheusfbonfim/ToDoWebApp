@@ -14,12 +14,18 @@ const profile = {
 }
 
 // Listas
-const lists = []
-
-// Item 
-const item = []
-
-
+const lists = [
+  {
+    id: 1,
+    name: "To Do",
+    itens: [
+      {
+        id: 1,
+        name:"Fazer ToDo para o desafio da V360"
+      }
+    ]
+  }
+]
 
 // ------------------------------------------------------
 // ======================================================
@@ -36,7 +42,8 @@ const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (
 // Requisição GET - Página Home
 routes.get("/", (request, response) => {
   // Respondendo a page home
-  return response.render(views + "index");
+  // Passando para dentro da pagina as informações do "banco"
+  return response.render(views + "index", {lists});
 })
 
 // Requisição GET - Página Adicionar Item
@@ -72,13 +79,20 @@ routes.get("/profile", (request, response) => {
 // Requisição POST - Página List
 routes.post("/list", (request, response) => {
   // request.body = {name: "dasdsa"}
-  lists.push(request.body);     // ADD na lista
+  const lastId = lists[lists.length - 1] ? lists[lists.length - 1] : 1;
+
+  lists.push({
+    id: lastId + 1,
+    name:request.body.name});     // ADD na lista
+
   return response.redirect("/") // Redireciona para /
 })
 
 // Requisição POST - Página Item
 routes.post("/item", (request, response) => {
-  item.push(request.body);     // ADD na lista
+  // ADD Item
+  lists[0].itens.push({name:request.body.name})
+  console.log(lists)   
   return response.redirect("/") // Redireciona para /
 })
 
