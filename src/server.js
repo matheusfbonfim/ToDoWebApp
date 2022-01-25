@@ -10,11 +10,13 @@ const routes = require('./routes')
 // Motor de visualização - Processamento do HTML
 server.set('view engine', 'ejs')
 
-
 // Middlewware ("Homem no meio" -> Entre o get)
 // Habilita os arquivos estáticos
 // Servidor cria rota automatico para os arquivos públicos
 server.use(express.static("public"))
+
+// Deixar o req body - Tem que habilitar no express
+server.use(express.urlencoded({extended: true}))
 
 // ======================================================
 // =============ROTAS====================================

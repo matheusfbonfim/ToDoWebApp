@@ -57,12 +57,12 @@ routes.get("/profile", (request, response) => {
 
 // Requisição POST - Página List
 routes.post("/list", (request, response) => {
-  console.log(request.body)
+  console.log(request.body);
 })
 
 // Requisição POST - Página Item
 routes.post("/item", (request, response) => {
-  console.log(request.body)
+  console.log(request.body);
 })
 
 
