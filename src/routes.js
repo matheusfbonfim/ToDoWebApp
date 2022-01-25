@@ -5,18 +5,32 @@ const express = require('express');
 const routes = express.Router();
 
 // ======================================================
+// Variaveis temporarias - "BANCO DE DADOS"
+
+// Perfil
+const profile = {
+  name:"Fillipe",
+  avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
+}
+
+// Listas
+const lists = []
+
+// Item 
+const item = []
+
+
+
+// ------------------------------------------------------
+// ======================================================
 // =============ROTAS====================================
 // ======================================================
 
 // __dirname -> Caminho no diretorio para enviar o HTML
 const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (padrão)
 
-const profile = {
-  name:"Fillipe",
-  avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
-}
 
-//================ 
+//======================================================
 // GETS
 
 // Requisição GET - Página Home
@@ -52,20 +66,25 @@ routes.get("/profile", (request, response) => {
 })
 
 
-//================ 
+//======================================================
 // POST
 
 // Requisição POST - Página List
 routes.post("/list", (request, response) => {
-  console.log(request.body);
+  // request.body = {name: "dasdsa"}
+  lists.push(request.body);     // ADD na lista
+  return response.redirect("/") // Redireciona para /
 })
 
 // Requisição POST - Página Item
 routes.post("/item", (request, response) => {
-  console.log(request.body);
+  item.push(request.body);     // ADD na lista
+  return response.redirect("/") // Redireciona para /
 })
 
 
+
+// ------------------------------------------------------
 
 
 // Exportando 
