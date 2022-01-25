@@ -11,6 +11,12 @@ const routes = express.Router();
 // __dirname -> Caminho no diretorio para enviar o HTML
 const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (padrão)
 
+const profile = {
+  name:"Fillipe",
+  avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
+}
+
+
 // Requisição GET - Página Home
 routes.get("/", (request, response) => {
   // Respondendo a page home
@@ -40,7 +46,7 @@ routes.get("/list/edit", (request, response) => {
 
 // Requisição GET - Página Profile
 routes.get("/profile", (request, response) => {
-  return response.render(views + "profile");
+  return response.render(views + "profile", {profile:profile});
 })
 
 
