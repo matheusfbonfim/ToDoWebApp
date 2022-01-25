@@ -31,7 +31,9 @@
 
     <div class="container flex animate-up delay-2">
       <main>
-        <form id="form-list">
+        <!-- Ação de POST dentro da página list -->
+        <!-- Envia dados colocados para a mesma pagina-->
+        <form id="form-list" action="/list" method = "POST">
           <fieldset>
             <legend>Dados da Lista</legend>
             <div class="separator light"></div>
@@ -60,7 +62,7 @@
             type="submit" 
             title="Salvar Dados">Salvar</button>
           <a 
-            href="index.html" 
+            href="/" 
             class="button gray">
             <img 
               src="/images/trash-24.svg" 

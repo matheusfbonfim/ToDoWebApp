@@ -16,6 +16,8 @@ const profile = {
   avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
 }
 
+//================ 
+// GETS
 
 // Requisição GET - Página Home
 routes.get("/", (request, response) => {
@@ -48,6 +50,22 @@ routes.get("/list/edit", (request, response) => {
 routes.get("/profile", (request, response) => {
   return response.render(views + "profile", {profile:profile});
 })
+
+
+//================ 
+// POST
+
+// Requisição POST - Página List
+routes.post("/list", (request, response) => {
+  console.log(request.body)
+})
+
+// Requisição POST - Página Item
+routes.post("/item", (request, response) => {
+  console.log(request.body)
+})
+
+
 
 
 // Exportando 
