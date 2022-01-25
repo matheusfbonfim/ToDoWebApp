@@ -22,8 +22,5 @@ server.use(express.static("public"))
 server.use(routes)
 
 
-
 // Ligando o servidor - Porta 3000
 server.listen(3000, () => console.log("rodando"));
-
-

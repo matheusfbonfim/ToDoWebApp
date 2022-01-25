@@ -28,15 +28,21 @@ routes.get("/list", (request, response) => {
 })
 
 
-// Requisição GET - Página Edita Item
+// Requisição GET - Página Editar Item
 routes.get("/item/edit", (request, response) => {
-  return response.render(basePath + "item-edit");
+  return response.render(views + "item-edit");
 })
 
-// Requisição GET - Página Edita List
+// Requisição GET - Página Editar List
 routes.get("/list/edit", (request, response) => {
-  return response.render(basePath + "list-edit.html");
+  return response.render(views + "list-edit");
 })
+
+// Requisição GET - Página Profile
+routes.get("/profile", (request, response) => {
+  return response.render(views + "profile");
+})
+
 
 // Exportando 
 module.exports = routes;
