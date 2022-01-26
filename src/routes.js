@@ -22,17 +22,22 @@ const lists = [
       {
         id: 1,
         name:"Fazer ToDo para o desafio da V360"
-      }
+      },
+      {
+        id: 2,
+        name:"Não esquecer"
+      },
+
     ]
   },
   {
     id: 2,
-    name: "To Do",
+    name: "Lista 2",
     itens: [
       {
         id: 1,
         name:"Fazer ToDo para o desafio da V360"
-      }
+      },
     ]
   }
 ]

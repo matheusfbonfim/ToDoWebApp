@@ -5,7 +5,7 @@
 /* Estrutura do container list*/
 .list{
   /*Largura do container list*/
-  max-width: 1000px;
+  width: 1000px;
   
   /*Direção do elementes*/
   display: flex;
@@ -23,8 +23,9 @@
 
 /*Cabeçalho da lista*/
 .header-list{
-  /*Definindo altura*/
+  /*Definindo altura e largura*/
   height: 80px;
+  width: 100%;
   padding: 1.5rem; /*24px de 16px root*/
 
   display: flex;

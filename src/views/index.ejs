@@ -103,20 +103,20 @@
         
         <!-- Container de listas -->  
         <div class="lists">
-          <!-- =====================================-->
-          <!-- Listas -->
+          
 
           <!-- Para cada item do back colocar no front -->
           <% lists.forEach(list => { %>
-              
-            <div class="list" data-id="1">
+            <!-- =====================================-->
+            <!-- Listas -->
+            <div class="list" data-id="<%= list.id %>">
             
               <!-- Cabeçalho da lista-->
               <div class="header-list"> 
                 <!--Container (Id + Titulo)-->
                 <div class="container-title-list">
-                  <div class="id"> 1 </div>
-                  <div class="name-list"> Pizzaria </div>
+                  <div class="id"> <%= list.id %>  </div>
+                  <div class="name-list"> <%= list.name %> </div> 
                 </div>
                 
                 <!--Botões do cabeçalho de cada lista-->
@@ -139,59 +139,36 @@
               
               <!-- Container de itens-->
               <div class="container-itens">
-                <!--Item 01 - Feito-->
-                <div class="item green" data-item="1">
-                  <div class="container-checkbox-title">
-                    <!-- Checkbox-->
-                    <div class="checkbox">
-                      <input type="checkbox" id="check-item" name="item">
-                      <span></span>
-                      <span>
-                        <img src="/images/check.svg" alt="">
-                      </span>
-                    </div>
-                    <!-- Name item-->
-                    <div class="name-item done"> to do item </div>
-                  </div>
+                <!-- Para cada item da lista específica -->
+                <% list.itens.forEach(item => { %>
+                  <!--Item 01 - Feito-->
+                  <div class="item green" data-item="<%= item.id %> ">
+                                      <div class="container-checkbox-title">
+                                        <!-- Checkbox-->
+                                        <div class="checkbox">
+                                          <input type="checkbox" id="check-item" name="item">
+                                          <span></span>
+                                          <span>
+                                            <img src="/images/check.svg" alt="">
+                                          </span>
+                                        </div>
+                                        <!-- Name item-->
+                                        <div class="name-item done"> <%= item.name %>  </div>
+                                      </div>
+                    
+                                      <!--Botões do cada item da lista-->
+                                      <div class="actions">
+                                        <p class="only-recommendation">Ações</p>
+                                        <a href="/item/edit" class="button-item white edit" title="Editar Item">
+                                          <img src="/images/edit-24.svg" alt="Editar Item" />
+                                        </a>
+                                        <a href="" class="button-item white delete" title="Excluir Item">
+                                          <img src="/images/trash-24.svg" alt="Excluir Item" />
+                                        </a>
+                                      </div>
+                  </div>                
+                <%})%>
 
-                  <!--Botões do cada item da lista-->
-                  <div class="actions">
-                    <p class="only-recommendation">Ações</p>
-                    <a href="/item/edit" class="button-item white edit" title="Editar Item">
-                      <img src="/images/edit-24.svg" alt="Editar Item" />
-                    </a>
-                    <a href="" class="button-item white delete" title="Excluir Item">
-                      <img src="/images/trash-24.svg" alt="Excluir Item" />
-                    </a>
-                  </div>
-                </div>
-
-                <!--Item 02 - Em processo-->
-                <div class="item roxo" data-item="2"> 
-                  <div class="container-checkbox-title">
-                    <!-- Checkbox-->
-                    <div class="checkbox">
-                      <input type="checkbox" id="check-item" name="item">
-                      <span></span>
-                      <span>
-                        <img src="/images/check.svg" alt="">
-                      </span>
-                    </div>
-                    <!-- Name item-->
-                    <div class="name-item done"> to do item </div>
-                  </div>
-
-                  <!--Botões do cada item da lista-->
-                  <div class="actions">
-                    <p class="only-recommendation">Ações</p>
-                    <a href="/item/edit" class="button-item white edit" title="Editar Item">
-                      <img src="/images/edit-24.svg" alt="Editar Item" />
-                    </a>
-                    <a href="" class="button-item white delete" title="Excluir Item">
-                      <img src="/images/trash-24.svg" alt="Excluir Item" />
-                    </a>
-                  </div>
-                </div>
               </div>
               <!--Botão para adicionar novo item-->
               <a href="/item" class="buttonCard purple">
