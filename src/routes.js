@@ -4,6 +4,7 @@ const express = require('express');
 // Executando express - Servidor
 const routes = express.Router();
 
+
 // ======================================================
 // Variaveis temporarias - "BANCO DE DADOS"
 
@@ -52,7 +53,7 @@ const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (
 
 
 //======================================================
-// GETS
+// GET
 
 // Requisição GET - Página Home
 routes.get("/", (request, response) => {
@@ -91,14 +92,15 @@ routes.get("/profile", (request, response) => {
 //======================================================
 // POST
 
-// Requisição POST - Página List
+// Requisição POST - Página ADD List
 routes.post("/list", (request, response) => {
   // request.body = {name: "dasdsa"}
   const lastId = lists[lists.length - 1] ? lists[lists.length - 1] : 1;
 
   lists.push({
     id: lastId + 1,
-    name:request.body.name});     // ADD na lista
+    name:request.body.name,
+    itens: []});     // ADD na lista
 
   return response.redirect("/") // Redireciona para /
 })
@@ -114,7 +116,5 @@ routes.post("/item", (request, response) => {
 
 
 // ------------------------------------------------------
-
-
 // Exportando 
 module.exports = routes;
