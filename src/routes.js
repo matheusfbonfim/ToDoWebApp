@@ -1,5 +1,6 @@
 // Importando pacote Express
 const express = require('express');
+const res = require('express/lib/response');
 
 // Executando express - Servidor
 const routes = express.Router();
@@ -90,7 +91,7 @@ const List = {
       console.log(List.data)   
       return response.redirect("/") // Redireciona para /
     },
-    show(request, response){ // Retorna dados específicos para editar
+    show(request, response){      // Retorna dados específicos para pagina editar list
       // Pegando ID específico
       const listId = request.params.id;
     
@@ -105,7 +106,7 @@ const List = {
       // Renderiza a pagina enviando para pagina informações
       return response.render(views + "list-edit", { list });
     },
-    showItem(request, response){
+    showItem(request, response){ // Retorna dados específicos para pagina de editar item
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
       console.log('LIST ID ' + listId);
@@ -132,6 +133,37 @@ const List = {
       }
 
       return response.render(views + "item-edit", { item });
+    },
+    update(request, response){   // Enviar dados atualizados da lista conforme o ID para o index
+      // Pegando ID específico
+      const listId = request.params.id;
+  
+      // Verifica cada dado para encontrar o ID
+      const list = List.data.find(list => Number(list.id) == Number(listId));
+
+      // Caso lista nao exista
+      if (!list){
+        return response.send("List Not Found!!")
+      }
+
+      // Atualiza dados 
+      const updateList = {
+        ...list,
+        name: request.body.name
+      }
+
+      // Percorre todas listas e atualiza somente conforme o ID
+      List.data = List.data.map( list => {
+        if (Number(list.id) === Number(listId)){
+          list = updateList;
+        }
+        return list
+      })
+
+      // Redireciona para mesma tela
+      response.redirect('/list/'+ listId);
+
+ 
     }
   },
   // Serviços
@@ -180,6 +212,11 @@ routes.post("/list", List.controllers.save)
 
 // Requisição POST - Página Item
 routes.post("/item", List.controllers.saveItem)
+
+// Requisição POST - Página Editar List
+routes.post("/list/:id", List.controllers.update)
+
+
 
 
 // Requisição POST - Salvar alterações Profile
