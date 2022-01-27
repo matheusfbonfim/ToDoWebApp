@@ -104,6 +104,34 @@ const List = {
 
       // Renderiza a pagina enviando para pagina informações
       return response.render(views + "list-edit", { list });
+    },
+    showItem(request, response){
+      // Pegando ID específico da lista da url
+      const listId = request.params.idList;
+      console.log('LIST ID ' + listId);
+
+      // Pegando ID específico do item da url
+      const itemId = request.params.idItem;
+      console.log('ITEM ID ' + itemId);
+      
+      // Verifica cada dado para encontrar o ID
+      const list = List.data.find(list => Number(list.id) == Number(listId));
+      console.log('LIST ' +  list);
+
+      // Caso lista nao exista
+      if (!list){
+        return response.send("List Not Found!!")
+      }
+
+      // Verifica cada dado para encontrar o item
+      const item = list.itens.find(item => Number(item.id) == Number(itemId));
+
+      // Caso item nao exista
+      if (!item){
+        return response.send("Item Not Found!!")
+      }
+
+      return response.render(views + "item-edit", { item });
     }
   },
   // Serviços
@@ -135,9 +163,7 @@ routes.get("/item", List.controllers.createItem)
 routes.get("/list", List.controllers.create)
 
 // Requisição GET - Página Editar Item
-routes.get("/list/:idList/item/:idItem", (request, response) => {
-  return response.render(views + "item-edit");
-})
+routes.get("/list/:idList/item/:idItem", List.controllers.showItem)
 
 // Requisição GET - Página Editar List
 routes.get("/list/:id", List.controllers.show)
