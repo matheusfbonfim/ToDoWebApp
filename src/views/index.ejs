@@ -123,7 +123,7 @@
                 <div class="actions">
                   <p class="only-recommendation">Ações</p>
                   
-                  <a href="/list/edit" class="button-list edit" title="Editar Lista">
+                  <a href="/list/<%= list.id %>" class="button-list edit" title="Editar Lista">
                     <span>
                       <img src="/images/edit-list.svg" alt="Editar Lista"/>
                     </span>  
@@ -159,7 +159,7 @@
                                       <!--Botões do cada item da lista-->
                                       <div class="actions">
                                         <p class="only-recommendation">Ações</p>
-                                        <a href="/item/edit" class="button-item white edit" title="Editar Item">
+                                        <a href="/list/<%= list.id %>/item/<%=item.id%>" class="button-item white edit" title="Editar Item">
                                           <img src="/images/edit-24.svg" alt="Editar Item" />
                                         </a>
                                         <a href="" class="button-item white delete" title="Excluir Item">

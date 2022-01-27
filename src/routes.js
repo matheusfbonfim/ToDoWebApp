@@ -21,7 +21,7 @@ const Profile = {
     update(request, response){
       // Req body para pegar os dados
       const data = request.body;
-      
+
       // Update
       Profile.data = data;
 
@@ -89,6 +89,21 @@ const List = {
       List.data[0].itens.push({name:request.body.name})
       console.log(List.data)   
       return response.redirect("/") // Redireciona para /
+    },
+    show(request, response){ // Retorna dados específicos para editar
+      // Pegando ID específico
+      const listId = request.params.id;
+    
+      // Verifica cada dado para encontrar o ID
+      const list = List.data.find(list => Number(list.id) == Number(listId));
+
+      // Caso lista nao exista
+      if (!list){
+        return response.send("List Not Found!!")
+      }
+
+      // Renderiza a pagina enviando para pagina informações
+      return response.render(views + "list-edit", { list });
     }
   },
   // Serviços
@@ -120,14 +135,12 @@ routes.get("/item", List.controllers.createItem)
 routes.get("/list", List.controllers.create)
 
 // Requisição GET - Página Editar Item
-routes.get("/item/edit", (request, response) => {
+routes.get("/list/:idList/item/:idItem", (request, response) => {
   return response.render(views + "item-edit");
 })
 
 // Requisição GET - Página Editar List
-routes.get("/list/edit", (request, response) => {
-  return response.render(views + "list-edit");
-})
+routes.get("/list/:id", List.controllers.show)
 
 // Requisição GET - Página Profile
 routes.get("/profile", Profile.controllers.index)
