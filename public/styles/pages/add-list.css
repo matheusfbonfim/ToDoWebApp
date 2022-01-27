@@ -1,5 +1,5 @@
 aside.card {
-  width: 22rem;
+  width: 35rem;
 
   margin-left: 8rem;
 
@@ -28,6 +28,6 @@ aside .button img {
 
 aside .button + .button {
   padding: 0;
-  width: 3rem;
+  width: 20rem;
   height: 3rem;
 }

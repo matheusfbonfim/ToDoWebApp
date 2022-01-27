@@ -58,20 +58,29 @@
             form="form-list" 
             type="submit" 
             title="Salvar Dados">Salvar</button>
-          <a 
+          
+            <a 
             href="/" 
             class="button gray">
-            <img 
-              src="/images/trash-24.svg" 
-              alt="Cancelar alteracao" 
-              title="Cancelar alteracao">
-          </a>
+            Cancelar alteração
+            </a>
+
+          <button
+            class="button red"
+            type="submit"
+            form="delete-list">Excluir lista</button>
+
         </div>
       </aside>
       
     </div>
-    <!-- end container -->
-    
+    <!-- end container -->  
+    <form
+      method="post"
+      action="/list/delete/<%= list.id %>"
+      id = "delete-list"
+    ></form>
+
   </body>
 </html>
  

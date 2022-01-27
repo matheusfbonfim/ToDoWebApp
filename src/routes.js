@@ -1,6 +1,5 @@
 // Importando pacote Express
 const express = require('express');
-const res = require('express/lib/response');
 
 // Executando express - Servidor
 const routes = express.Router();
@@ -9,7 +8,7 @@ const routes = express.Router();
 // ======================================================
 // Variaveis temporarias - "BANCO DE DADOS"
 
-// Perfil
+// Object Literal - Objeto com propriedades para o PERFIL
 const Profile = {
   data:{
     name:"Fillipe",
@@ -29,10 +28,9 @@ const Profile = {
       return response.redirect('/profile');
     }
   }
-
 }
 
-// Object Literal - Objeto com propriedades
+// Object Literal - Objeto com propriedades para LISTAS
 const List = {
   // Dados das listas
   data:[
@@ -76,13 +74,17 @@ const List = {
     },
     save(request, response){
       // request.body = {name: "dasdsa"}
-      const lastId = List.data[List.data.length - 1] ? List.data[List.data.length - 1] : 1;
-    
+      const lastId = List.data[List.data.length - 1] ? List.data[List.data.length - 1].id + 1 : 1;
+      
+      console.log(lastId);
+
       List.data.push({
-        id: lastId + 1,
+        id: lastId,
         name:request.body.name,
         itens: []});     // ADD na lista
-    
+      
+      console.log(List.data)  
+
       return response.redirect("/") // Redireciona para /
     },
     saveItem(request, response){
@@ -158,9 +160,7 @@ const List = {
       })
 
       // Redireciona para mesma tela
-      response.redirect('/list/'+ listId);
-
- 
+      response.redirect('/');
     },
     updateItem(request, response){    // Enviar dados atualizados do item conforme o ID da lista e item para o index
       // Pegando ID específico da lista da url
@@ -202,7 +202,14 @@ const List = {
       })
 
       // Redireciona para mesma tela
-      response.redirect('/list/'+ listId + '/item/' + itemId);
+      response.redirect('/');
+    },
+    delete(request, response){
+      const listId = request.params.id;
+
+      List.data = List.data.filter(list => Number(list.id) !== Number(listId));
+
+      return response.redirect('/');
     }
   },
   // Serviços
@@ -229,7 +236,7 @@ routes.get("/", List.controllers.index)
 // Requisição GET - Página Adicionar Item
 routes.get("/item", List.controllers.createItem)
 
-// Requisição GET - Página Adiciionar List
+// Requisição GET - Página Adicionar List
 routes.get("/list", List.controllers.create)
 
 // Requisição GET - Página Editar Item
@@ -258,9 +265,12 @@ routes.post("/list/:id", List.controllers.update)
 // Requisição POST - Página Editar Item
 routes.post("/list/:idList/item/:idItem", List.controllers.updateItem)
 
-
 // Requisição POST - Salvar alterações Profile
 routes.post("/profile", Profile.controllers.update)
+
+
+// Requisição POST - Página Deletar List
+routes.post("/list/delete/:id", List.controllers.delete)
 
 // ------------------------------------------------------
 // Exportando 
