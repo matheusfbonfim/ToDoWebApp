@@ -9,9 +9,26 @@ const routes = express.Router();
 // Variaveis temporarias - "BANCO DE DADOS"
 
 // Perfil
-const profile = {
-  name:"Fillipe",
-  avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
+const Profile = {
+  data:{
+    name:"Fillipe",
+    avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
+  },
+  controllers: {
+    index(request,response){
+      return response.render(views + "profile", {profile: Profile.data});
+    },
+    update(request, response){
+      // Req body para pegar os dados
+      const data = request.body;
+      
+      // Update
+      Profile.data = data;
+
+      return response.redirect('/profile');
+    }
+  }
+
 }
 
 // Object Literal - Objeto com propriedades
@@ -45,29 +62,29 @@ const List = {
   ], 
   // Controles
   controllers:{
-    index(req, res){
+    index(request, response){
       // Respondendo a page home
       // Passando para dentro da pagina as informações do "banco"
       return response.render(views + "index", {lists: List.data});
     },
-    create(req, res){
+    create(request, response){
       return response.render(views + "list");
     },
-    createItem(req,res){
+    createItem(request, response){
       return response.render(views + "item");
     },
-    save(req,res){
+    save(request, response){
       // request.body = {name: "dasdsa"}
       const lastId = List.data[List.data.length - 1] ? List.data[List.data.length - 1] : 1;
     
-      lists.push({
+      List.data.push({
         id: lastId + 1,
         name:request.body.name,
         itens: []});     // ADD na lista
     
       return response.redirect("/") // Redireciona para /
     },
-    saveItem(req,res){
+    saveItem(request, response){
       // ADD Item
       List.data[0].itens.push({name:request.body.name})
       console.log(List.data)   
@@ -113,9 +130,7 @@ routes.get("/list/edit", (request, response) => {
 })
 
 // Requisição GET - Página Profile
-routes.get("/profile", (request, response) => {
-  return response.render(views + "profile", {profile:profile});
-})
+routes.get("/profile", Profile.controllers.index)
 
 
 //======================================================
@@ -128,6 +143,8 @@ routes.post("/list", List.controllers.save)
 routes.post("/item", List.controllers.saveItem)
 
 
+// Requisição POST - Salvar alterações Profile
+routes.post("/profile", Profile.controllers.update)
 
 // ------------------------------------------------------
 // Exportando 
