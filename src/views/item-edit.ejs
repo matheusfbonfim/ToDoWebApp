@@ -66,11 +66,21 @@
               alt="Cancelar alteracao" 
               title="Cancelar alteracao">
           </a>
+
+          <button
+            class="button red"
+            type="submit"
+            form="delete-item">Excluir Item</button>
         </div>
       </aside>
       
     </div>
     <!-- end container -->
+    <form
+      method="post"
+      action="/delete/list/<%= list.id %>/item/<%= item.id %>"
+      id = "delete-item"
+    ></form>
   </body>
 </html>
  

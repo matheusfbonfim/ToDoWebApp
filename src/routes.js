@@ -12,7 +12,7 @@ const routes = express.Router();
 const Profile = {
   data:{
     name:"Fillipe",
-    avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643076000&v=beta&t=rItBvDvcyTFHg0IMrYLSF2OfYAVorgHRtnhwIiokeZM"
+    avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643418000&v=beta&t=dbLobY2PQxiLeOl9NUxZpAzb6qaly4u6QdBGJ-kyNnY"
   },
   controllers: {
     index(request,response){
@@ -61,18 +61,18 @@ const List = {
   ], 
   // Controles
   controllers:{
-    index(request, response){
+    index(request, response){         // Retorna Pagina Home
       // Respondendo a page home
       // Passando para dentro da pagina as informações do "banco"
       return response.render(views + "index", {lists: List.data});
     },
-    create(request, response){
+    create(request, response){        // Retorna Pagina para Adicionar Lista
       return response.render(views + "list");
     },
-    createItem(request, response){
+    createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
       return response.render(views + "item");
     },
-    save(request, response){
+    save(request, response){          // Adicionando Lista ao ToDo
       // request.body = {name: "dasdsa"}
       const lastId = List.data[List.data.length - 1] ? List.data[List.data.length - 1].id + 1 : 1;
       
@@ -87,7 +87,7 @@ const List = {
 
       return response.redirect("/") // Redireciona para /
     },
-    saveItem(request, response){
+    saveItem(request, response){      // Adicionndo Item alguma lista 
       // ADD Item
       List.data[0].itens.push({name:request.body.name})
       console.log(List.data)   
@@ -131,7 +131,7 @@ const List = {
         return response.send("Item Not Found!!")
       }
 
-      return response.render(views + "item-edit", { item });
+      return response.render(views + "item-edit", { list, item });
     },
     update(request, response){        // Enviar dados atualizados da lista conforme o ID para o index
       // Pegando ID específico
@@ -191,8 +191,6 @@ const List = {
         name: request.body.name
       }
 
-      console.log(List.data[listId-1])
-
       // Percorre todas listas e atualiza somente conforme o ID
       List.data[listId-1].itens = List.data[listId-1].itens.map( item => {
         if (Number(item.id) === Number(itemId)){
@@ -204,11 +202,21 @@ const List = {
       // Redireciona para mesma tela
       response.redirect('/');
     },
-    delete(request, response){
+    delete(request, response){        // Deletando a lista selecionada
       const listId = request.params.id;
 
       List.data = List.data.filter(list => Number(list.id) !== Number(listId));
 
+      return response.redirect('/');
+    },
+    deleteItem(request, response){    // Deletando o item selecionado
+      const listId = request.params.idList;
+      // Pegando ID específico do item da url
+      const itemId = request.params.idItem;
+      
+      // Criando uma nova lista com todos itens menos o escolhido para ser excluído
+      List.data[listId-1].itens = List.data[listId-1].itens.filter(item => Number(item.id) !== Number(itemId));
+      
       return response.redirect('/');
     }
   },
@@ -269,8 +277,11 @@ routes.post("/list/:idList/item/:idItem", List.controllers.updateItem)
 routes.post("/profile", Profile.controllers.update)
 
 
-// Requisição POST - Página Deletar List
+// Requisição POST -  Deletar List
 routes.post("/list/delete/:id", List.controllers.delete)
+
+// Requisição POST -  Deletar Item
+routes.post("/delete/list/:idList/item/:idItem", List.controllers.deleteItem)
 
 // ------------------------------------------------------
 // Exportando 
