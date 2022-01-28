@@ -78,8 +78,6 @@ const List = {
         name: List.data[listId-1].name
       };
 
-      //console.log('LIST ID: ' + listId);
-
       // Renderizando pagina passando informacão da lista especifica
       return response.render(views + "item", { list });
     },
@@ -243,7 +241,6 @@ const List = {
   },
 }
 
-
 // ------------------------------------------------------
 // ======================================================
 // =============ROTAS====================================
@@ -282,7 +279,7 @@ routes.get("/list/:id", List.controllers.show)
 // Requisição POST - Página ADD List - POST para adicionar lista nova
 routes.post("/list", List.controllers.save)
 
-// Requisição POST - Página ADD Item
+// Requisição POST - Página ADD Item - POST para adicionar item conforme a lista
 routes.post("/item/list/:idList", List.controllers.saveItem)
 
 
