@@ -31,9 +31,9 @@
 
     <div class="container flex animate-up delay-2">
       <main>
-        <form id="form-list" action = '/item' method='POST'>
+        <form id="form-list" action = '/item/list/<%=list.id%>' method='POST'>
           <fieldset>
-            <legend>Dados do novo Item</legend>
+            <legend>Dados do novo item da lista <span style='color:var(--color-secondary);'><%= list.name %></span></legend>
             <div class="separator light"></div>
 
             <div class="input-wrapper">

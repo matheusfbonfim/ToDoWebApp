@@ -70,33 +70,49 @@ const List = {
       return response.render(views + "list");
     },
     createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
-      return response.render(views + "item");
+      // Pegando ID específico da lista da url
+      const listId = request.params.idList;
+      
+      list = {
+        id: listId,
+        name: List.data[listId-1].name
+      };
+
+      //console.log('LIST ID: ' + listId);
+
+      // Renderizando pagina passando informacão da lista especifica
+      return response.render(views + "item", { list });
     },
     save(request, response){          // Adicionando Lista ao ToDo
       // request.body = {name: "dasdsa"}
+
+      // Criando um ID - Automatico
       const lastId = List.data[List.data.length - 1] ? List.data[List.data.length - 1].id + 1 : 1;
       
-      console.log(lastId);
-
       List.data.push({
         id: lastId,
         name:request.body.name,
         itens: []});     // ADD na lista
-      
-      console.log(List.data)  
 
       return response.redirect("/") // Redireciona para /
     },
-    saveItem(request, response){      // Adicionndo Item alguma lista 
+    saveItem(request, response){      // Adicionndo Item alguma lista
+      // Pegando ID específico
+      const listId = request.params.idList;
+
+      // Criando um ID de Item conforme a lista - Automatico
+      const Itens = List.data[listId - 1].itens;
+      const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
+      
       // ADD Item
-      List.data[0].itens.push({name:request.body.name})
-      console.log(List.data)   
+      List.data[listId-1].itens.push({id: lastItem, name:request.body.name});
+
       return response.redirect("/") // Redireciona para /
     },
     show(request, response){          // Retorna dados específicos para pagina editar list
       // Pegando ID específico
       const listId = request.params.id;
-    
+      
       // Verifica cada dado para encontrar o ID
       const list = List.data.find(list => Number(list.id) == Number(listId));
 
@@ -130,6 +146,8 @@ const List = {
       if (!item){
         return response.send("Item Not Found!!")
       }
+
+      console.log("LISTA: " + list + " | ITEM: " + item);
 
       return response.render(views + "item-edit", { list, item });
     },
@@ -241,11 +259,15 @@ const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (
 // Requisição GET - Página Home
 routes.get("/", List.controllers.index)
 
-// Requisição GET - Página Adicionar Item
-routes.get("/item", List.controllers.createItem)
+// Requisição GET - Página Adicionar Item na lista específico
+routes.get("/item/list/:idList", List.controllers.createItem)
 
 // Requisição GET - Página Adicionar List
 routes.get("/list", List.controllers.create)
+
+// Requisição GET - Página Profile
+routes.get("/profile", Profile.controllers.index)
+
 
 // Requisição GET - Página Editar Item
 routes.get("/list/:idList/item/:idItem", List.controllers.showItem)
@@ -253,21 +275,18 @@ routes.get("/list/:idList/item/:idItem", List.controllers.showItem)
 // Requisição GET - Página Editar List
 routes.get("/list/:id", List.controllers.show)
 
-// Requisição GET - Página Profile
-routes.get("/profile", Profile.controllers.index)
-
 
 //======================================================
 // POST
 
-// Requisição POST - Página ADD List
+// Requisição POST - Página ADD List - POST para adicionar lista nova
 routes.post("/list", List.controllers.save)
 
 // Requisição POST - Página ADD Item
-routes.post("/item", List.controllers.saveItem)
+routes.post("/item/list/:idList", List.controllers.saveItem)
 
 
-// Requisição POST - Página Editar List
+// Requisição POST - Página Editar List - POST para atualizar lista
 routes.post("/list/:id", List.controllers.update)
 
 // Requisição POST - Página Editar Item
