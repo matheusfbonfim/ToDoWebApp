@@ -6,7 +6,6 @@
 .list{
   /*Largura do container list*/
   min-width: 47%;
-  max-width: 50%;
   
   /*Direção do elementes*/
   display: flex;
