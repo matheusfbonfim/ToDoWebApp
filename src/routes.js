@@ -4,31 +4,15 @@ const express = require('express');
 // Executando express - Servidor
 const routes = express.Router();
 
+// Importando controllers
+const ProfileController = require('./controllers/ProfileController')
+
+
 
 // ======================================================
 // Variaveis temporarias - "BANCO DE DADOS"
 
-// Object Literal - Objeto com propriedades para o PERFIL
-const Profile = {
-  data:{
-    name:"Fillipe",
-    avatar: "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643418000&v=beta&t=dbLobY2PQxiLeOl9NUxZpAzb6qaly4u6QdBGJ-kyNnY"
-  },
-  controllers: {
-    index(request,response){
-      return response.render("profile", {profile: Profile.data});
-    },
-    update(request, response){
-      // Req body para pegar os dados
-      const data = request.body;
 
-      // Update
-      Profile.data = data;
-
-      return response.redirect('/profile');
-    }
-  }
-}
 
 // Object Literal - Objeto com propriedades para LISTAS
 const List = {
@@ -269,7 +253,7 @@ routes.get("/item/list/:idList", List.controllers.createItem)
 routes.get("/list", List.controllers.create)
 
 // Requisição GET - Página Profile
-routes.get("/profile", Profile.controllers.index)
+routes.get("/profile", ProfileController.index)
 
 
 // Requisição GET - Página Editar Item
@@ -296,7 +280,7 @@ routes.post("/list/:id", List.controllers.update)
 routes.post("/list/:idList/item/:idItem", List.controllers.updateItem)
 
 // Requisição POST - Salvar alterações Profile
-routes.post("/profile", Profile.controllers.update)
+routes.post("/profile", ProfileController.update)
 
 
 // Requisição POST -  Deletar List
