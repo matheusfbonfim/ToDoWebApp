@@ -16,7 +16,7 @@ const Profile = {
   },
   controllers: {
     index(request,response){
-      return response.render(views + "profile", {profile: Profile.data});
+      return response.render("profile", {profile: Profile.data});
     },
     update(request, response){
       // Req body para pegar os dados
@@ -64,22 +64,30 @@ const List = {
     index(request, response){         // Retorna Pagina Home
       // Respondendo a page home
       // Passando para dentro da pagina as informações do "banco"
-      return response.render(views + "index", {lists: List.data});
+      return response.render("index", {lists: List.data});
     },
     create(request, response){        // Retorna Pagina para Adicionar Lista
-      return response.render(views + "list");
+      return response.render("list");
     },
     createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
+      console.log("create item")
+      console.log(listId);
+      console.log(List.data)
       
+      // Encontrando o index no array List.data que corresponde a essa lista
+      const indexListId = List.data.findIndex((list) => {
+        return list.id == listId;
+      }) 
+
       list = {
         id: listId,
-        name: List.data[listId-1].name
+        name: List.data[indexListId].name
       };
 
       // Renderizando pagina passando informacão da lista especifica
-      return response.render(views + "item", { list });
+      return response.render("item", { list });
     },
     save(request, response){          // Adicionando Lista ao ToDo
       // request.body = {name: "dasdsa"}
@@ -94,16 +102,35 @@ const List = {
 
       return response.redirect("/") // Redireciona para /
     },
-    saveItem(request, response){      // Adicionndo Item alguma lista
+    saveItem(request, response){      // Adicionndo Item em uma lista especifica
       // Pegando ID específico
       const listId = request.params.idList;
+      // console.log("save item")
+      // console.log(listId)
+
+      // Encontrando o index no array List.data que corresponde a essa lista
+      const indexListId = List.data.findIndex((list) => {
+        return list.id == listId;
+      }) 
+
+      // console.log("LIST DATA")
+      // console.log(List.data)
+
+      // console.log("LIST INDEX")
+      // console.log(indexListId)
 
       // Criando um ID de Item conforme a lista - Automatico
-      const Itens = List.data[listId - 1].itens;
+      const Itens = List.data[indexListId].itens; // Array de itens da lista especifica
       const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
       
+      // console.log(Itens)
+      // console.log(lastItem)
+
       // ADD Item
-      List.data[listId-1].itens.push({id: lastItem, name:request.body.name});
+      List.data[indexListId].itens.push({id: lastItem, name:request.body.name});
+      
+      // console.log(List.data)
+      // console.log("==================")
 
       return response.redirect("/") // Redireciona para /
     },
@@ -120,7 +147,7 @@ const List = {
       }
 
       // Renderiza a pagina enviando para pagina informações
-      return response.render(views + "list-edit", { list });
+      return response.render("list-edit", { list });
     },
     showItem(request, response){      // Retorna dados específicos para pagina de editar item
       // Pegando ID específico da lista da url
@@ -147,7 +174,7 @@ const List = {
 
       console.log("LISTA: " + list + " | ITEM: " + item);
 
-      return response.render(views + "item-edit", { list, item });
+      return response.render("item-edit", { list, item });
     },
     update(request, response){        // Enviar dados atualizados da lista conforme o ID para o index
       // Pegando ID específico
@@ -245,10 +272,6 @@ const List = {
 // ======================================================
 // =============ROTAS====================================
 // ======================================================
-
-// __dirname -> Caminho no diretorio para enviar o HTML
-const views = __dirname + '/views/'  // -> EJS ja sabe que está nesse caminho (padrão)
-
 
 //======================================================
 // GET
