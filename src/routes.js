@@ -7,7 +7,7 @@ const routes = express.Router();
 // Importando controllers
 const ProfileController = require('./controllers/ProfileController')
 const ListController = require('./controllers/ListControllers')
-
+const DashboardController = require('./controllers/DashboardController')
 
 // ------------------------------------------------------
 // ======================================================
@@ -18,7 +18,7 @@ const ListController = require('./controllers/ListControllers')
 // GET
 
 // Requisição GET - Página Home
-routes.get("/", ListController.index)
+routes.get("/", DashboardController.index)
 
 
 // Requisição GET - Página Adicionar Item na lista específico
@@ -28,7 +28,7 @@ routes.get("/item/list/:idList", ListController.createItem)
 routes.get("/list", ListController.create)
 
 // Requisição GET - Página Profile
-routes.get("/profile", ListController.index)
+routes.get("/profile", ProfileController.index)
 
 
 // Requisição GET - Página Editar Item
@@ -51,7 +51,7 @@ routes.post("/item/list/:idList", ListController.saveItem)
 // Requisição POST - Página Editar List - POST para atualizar lista
 routes.post("/list/:id", ListController.update)
 
-// Requisição POST - Página Editar Item
+// Requisição POST - Página Editar Item - POST para atualizar item
 routes.post("/list/:idList/item/:idItem", ListController.updateItem)
 
 // Requisição POST - Salvar alterações Profile

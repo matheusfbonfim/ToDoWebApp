@@ -7,12 +7,7 @@ const Profile = require('../model/Profile')
 
 // Controles
 module.exports = {
-    index(request, response){         // Retorna Pagina Home
-      // Respondendo a page home
-      // Passando para dentro da pagina as informações do "banco"
-      return response.render("index", {lists: List.get()});
-    },
-    
+  
     create(request, response){        // Retorna Pagina para Adicionar Lista
       return response.render("list");
     },
