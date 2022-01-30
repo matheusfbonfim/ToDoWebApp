@@ -220,7 +220,7 @@ const List = {
     },
     delete(request, response){        // Deletando a lista selecionada
       const listId = request.params.id;
-
+  
       List.data = List.data.filter(list => Number(list.id) !== Number(listId));
 
       return response.redirect('/');

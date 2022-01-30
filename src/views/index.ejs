@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/styles/partials/home-page/lists.css" />
     <link rel="stylesheet" href="/styles/partials/home-page/buttons.css" />
     <link rel="stylesheet" href="/styles/partials/home-page/itens.css" />
-    <link rel="stylesheet" href="/styles/partials/home-page/modal.css" />
     <link rel="stylesheet" href="/styles/pages/index.css" />
 
     <!-- Link Fonte - IBM Plex Sans e Inter -->
@@ -25,7 +24,7 @@
     />
     <!-- Script JS -->
     <script src="scripts/index.js" defer type="module"></script>
-    <script type="text/javascript" src="/scripts/deleteElements.js"></script>
+    <script src="scripts/deleteElements.js" defer type="module"></script>
   </head>
 
   <!-- Pagina Home -->
@@ -130,14 +129,14 @@
                       <img src="/images/edit-list.svg" alt="Editar Lista"/>
                     </span>  
                   </a>
-                  
-                  <a onclick="deleteList()" class="button-list delete-icon" title="Excluir Lista">
+                  <!-- Deletando utilizando o botão de deletar -->
+                  <a class="button-list delete-icon" title="Excluir Lista">
                     <span>
                       <img src="/images/trash-list.svg" alt="Excluir Lista" />
                     </span>
                   </a>
-
-                  <form method="post" action="/list/delete/<%=list.id%>" id="delete-list"></form>
+                  <!-- Formulário para deletar -->
+                  <form method="post" action="" id="delete-list"></form>
                 </div>
               </div>
               
@@ -146,7 +145,7 @@
                 <!-- Para cada item da lista específica -->
                 <% list.itens.forEach(item => { %>
                   <!--Item 01 - Feito-->
-                  <div class="item green" data-item="<%= item.id %>">
+                  <div class="item green" data-id="<%= item.id %>">
                     <div class="container-checkbox-title">
                       <!-- Checkbox-->
                       <div class="checkbox">
@@ -166,9 +165,12 @@
                       <a href="/list/<%=list.id%>/item/<%=item.id%>" class="button-item white edit" title="Editar Item">
                         <img src="/images/edit-24.svg" alt="Editar Item" />
                       </a>
-                      <a href="" class="button-item white delete-icon" title="Excluir Item">
+                      <!-- Deletar item -->
+                      <a href="" class="button-item white deleteItem" title="Excluir Item">
                         <img src="/images/trash-24.svg" alt="Excluir Item" />
                       </a>
+                      <!-- Formulário para deletar -->
+                      <form method="post" action="" id="delete-item-list"></form>
                     </div>
                   </div>                
                 <%})%>
