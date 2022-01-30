@@ -72,9 +72,6 @@ const List = {
     createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
-      console.log("create item")
-      console.log(listId);
-      console.log(List.data)
       
       // Encontrando o index no array List.data que corresponde a essa lista
       const indexListId = List.data.findIndex((list) => {
@@ -105,32 +102,18 @@ const List = {
     saveItem(request, response){      // Adicionndo Item em uma lista especifica
       // Pegando ID específico
       const listId = request.params.idList;
-      // console.log("save item")
-      // console.log(listId)
 
       // Encontrando o index no array List.data que corresponde a essa lista
       const indexListId = List.data.findIndex((list) => {
         return list.id == listId;
       }) 
 
-      // console.log("LIST DATA")
-      // console.log(List.data)
-
-      // console.log("LIST INDEX")
-      // console.log(indexListId)
-
       // Criando um ID de Item conforme a lista - Automatico
       const Itens = List.data[indexListId].itens; // Array de itens da lista especifica
       const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
-      
-      // console.log(Itens)
-      // console.log(lastItem)
 
       // ADD Item
       List.data[indexListId].itens.push({id: lastItem, name:request.body.name});
-      
-      // console.log(List.data)
-      // console.log("==================")
 
       return response.redirect("/") // Redireciona para /
     },
