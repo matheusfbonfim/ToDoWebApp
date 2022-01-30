@@ -7,9 +7,8 @@
 
 // Object Literal - Objeto com propriedades para o PERFIL
 let data = {
-  name: "Fillipe",
-  avatar:
-    "https://media-exp1.licdn.com/dms/image/D4E35AQEroDYURewRXg/profile-framedphoto-shrink_800_800/0/1639072813228?e=1643418000&v=beta&t=dbLobY2PQxiLeOl9NUxZpAzb6qaly4u6QdBGJ-kyNnY",
+  name: "Matheus",
+  avatar: "https://avatars.githubusercontent.com/u/64151259?s=400&u=fbe601800b4d997f5caab8f7f6372543512f0047&v=4",
 };
 
 
