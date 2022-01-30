@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/styles/partials/home-page/lists.css" />
     <link rel="stylesheet" href="/styles/partials/home-page/buttons.css" />
     <link rel="stylesheet" href="/styles/partials/home-page/itens.css" />
+    <link rel="stylesheet" href="/styles/partials/home-page/modal.css" />
     <link rel="stylesheet" href="/styles/pages/index.css" />
 
     <!-- Link Fonte - IBM Plex Sans e Inter -->
@@ -22,8 +23,9 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
+    <!-- Script JS -->
     <script src="scripts/index.js" defer type="module"></script>
+    <script type="text/javascript" src="/scripts/deleteElements.js"></script>
   </head>
 
   <!-- Pagina Home -->
@@ -129,11 +131,13 @@
                     </span>  
                   </a>
                   
-                  <a href="" class="button-list delete" title="Excluir Lista">
+                  <a onclick="deleteList()" class="button-list delete-icon" title="Excluir Lista">
                     <span>
                       <img src="/images/trash-list.svg" alt="Excluir Lista" />
                     </span>
                   </a>
+
+                  <form method="post" action="/list/delete/<%=list.id%>" id="delete-list"></form>
                 </div>
               </div>
               
@@ -162,7 +166,7 @@
                       <a href="/list/<%=list.id%>/item/<%=item.id%>" class="button-item white edit" title="Editar Item">
                         <img src="/images/edit-24.svg" alt="Editar Item" />
                       </a>
-                      <a href="" class="button-item white delete" title="Excluir Item">
+                      <a href="" class="button-item white delete-icon" title="Excluir Item">
                         <img src="/images/trash-24.svg" alt="Excluir Item" />
                       </a>
                     </div>
@@ -180,12 +184,12 @@
             </div>
 
           <%})%>
-          
-        
         </div>
+        <!-- end cards -->
       </main>
     </div>
-
-    
+    <!-- end container-->
+  
+    <!-- end modal-wrapper -->
   </body>
 </html>

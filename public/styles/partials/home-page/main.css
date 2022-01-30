@@ -11,15 +11,21 @@
   --color-background: #F0F2F5;
   --color-text: #FCFDFF;
 
+  /*Cores primarias e secundarias*/
   --color-primary: #2C1A55;
   --color-secondary: #fb7b14;
 
   --color-hairline-in-dark: #4F4F5B;
 
+  /*Cor para card */
+  --color-card-content: #787880;
+  --color-card-title: #5A5A66;
+  --color-card-label: #BFBFCC;
+  --color-card-content: #787880;
+
   --color-cancel: #E1E3E5;
   --color-delete: #EB3B35; 
   --color-save: #36B336;
-
 }
 
 body {

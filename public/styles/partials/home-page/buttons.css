@@ -95,6 +95,17 @@ button.button {
   height: 1.5rem;
 }
 
+.button.gray {
+  color: var(--color-card-content);
+  background: var(--color-cancel);
+}
+
+.button.gray:hover {
+  background: #ECEEF0;
+}
+
+
+
 /* -------------------------------------------------- */
 /* BOTÕES DE EDITAR E REMOVER DA LISTA*/
 /* -------------------------------------------------- */
