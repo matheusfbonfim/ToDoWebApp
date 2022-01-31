@@ -70,17 +70,17 @@
           <!-- Informações sobre as listas e itens -->
           <div class="container-info">
             <div class="total">
-              <strong>x</strong>
+              <strong><%= statusCount.totalItens %></strong>
               Tarefas ao total
             </div>
             
             <div class="in-progress">
-              <strong>x</strong>
+              <strong><%= statusCount.progress %></strong>
               Pendentes
             </div>
             
             <div class="finished">
-              <strong>x</strong>
+              <strong><%= statusCount.done %></strong>
               Feitas
             </div>
           </div>
@@ -169,9 +169,9 @@
                         <img src="/images/edit-24.svg" alt="Editar Item" />
                       </a>
                       <!-- Deletar item -->
-                      <a href="" class="button-item white deleteItem" title="Excluir Item">
+                      <!-- <a href="" class="button-item white deleteItem" title="Excluir Item">
                         <img src="/images/trash-24.svg" alt="Excluir Item" />
-                      </a>
+                      </a> -->
                       <!-- Formulário para deletar -->
                       <form method="post" action="" id="delete-item-list"></form>
                     </div>
@@ -184,7 +184,7 @@
                 <span>
                   <img src="/images/plus-24.svg" alt="Novo Item" /> 
                 </span>
-                Adicionar uma cartão
+                Adicionar um cartão
               </a>
             </div>
 

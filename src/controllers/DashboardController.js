@@ -8,11 +8,21 @@
 const List = require('../model/List')
 const Profile = require('../model/Profile')
 
+// Utilitarios
+const ListUtils = require('../utils/ListUtils');
+
 module.exports = {
   index(request, response) {
     const profile = Profile.get()
+
+    const statusCount = {
+      totalItens: ListUtils.getTotalItens(List.get()),
+      done: 'x',
+      progress: 'x'
+    }
+
     // Retorna Pagina Home - Respondendo a page home
     // Passando para dentro da pagina as informações do "banco"
-    return response.render("index", { lists: List.get(), profile: profile });
+    return response.render("index", { lists: List.get(), profile: profile, statusCount: statusCount });
   },
 }
