@@ -13,13 +13,26 @@ const ListUtils = require('../utils/ListUtils');
 
 module.exports = {
   index(request, response) {
-    const profile = Profile.get()
+    // Informações do profile e das listas
+    const profile = Profile.get();
+    const lists = List.get();
 
-    const statusCount = {
+    // Objeto com valores para o sumário
+    let statusCount = {
       totalItens: ListUtils.getTotalItens(List.get()),
-      done: 'x',
-      progress: 'x'
+      done: 0,
+      progress: 0
     }
+
+    // Atualizando valores do statusCount conforme o banco
+    lists.map((list) => {
+      list.itens.map((item) => {
+        let status = item.status == 'green' ? 'done' : 'progress';
+  
+        // Somando a quantidade de status
+        statusCount[status] += 1;
+      })  
+    })
 
     console.log("===== LISTA ====")
     console.log(List.get())
