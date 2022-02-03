@@ -146,11 +146,11 @@
                 <!-- Para cada item da lista específica -->
                 <% list.itens.forEach(item => { %>
                   <!--Item 01 - Em progresso-->
-                  <div class="item roxo" data-idList="<%= list.id %>" data-id="<%= item.id %>">
+                  <div class="item <%= item.status %>" data-idList="<%= list.id %>" data-id="<%= item.id %>">
                     <div class="container-checkbox-title">
                       <!-- Checkbox-->
                       <div class="checkbox">
-                        <input type="checkbox" onclick="handleClick(this)" id="check-item" data-idList="<%= list.id %>" data-idItem="<%= item.id %>" name="item">
+                        <input <% if(item.status == 'green'){%> checked <%}else{%> unchecked <%}%> type="checkbox" onclick="handleClick(this)" id="check-item" data-idList="<%= list.id %>" data-idItem="<%= item.id %>" data-idItem='<%= item.status %>' name="item">
                         <span></span>
                         <span>
                           <img src="/images/check.svg" alt="">

@@ -64,6 +64,11 @@ routes.post("/list/delete/:id", ListController.delete)
 // Requisição POST -  Deletar Item
 routes.post("/delete/list/:idList/item/:idItem", ListController.deleteItem)
 
+
+// Requisição POST -  CHECK Item
+routes.post("/check/list/:idList/item/:idItem", ListController.checkItem)
+
+
 // ------------------------------------------------------
 // Exportando 
 module.exports = routes;

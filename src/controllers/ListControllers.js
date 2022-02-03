@@ -58,7 +58,7 @@ module.exports = {
       const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
 
       // ADD Item
-      List.get()[indexListId].itens.push({id: lastItem, name:request.body.name});
+      List.get()[indexListId].itens.push({id: lastItem, name:request.body.name, status: 'roxo'});
 
       return response.redirect("/") // Redireciona para /
     },
@@ -202,6 +202,18 @@ module.exports = {
       
       List.deleteItem(listId, itemId);
       
+      return response.redirect('/');
+    },
+
+    checkItem(request, response){    // Deletando o item selecionado
+      console.log(request.body.checkbox)
+      
+      const listId = request.params.idList;
+      // Pegando ID específico do item da url
+      const itemId = request.params.idItem;
+      
+      List.checkItem(listId, itemId);
+
       return response.redirect('/');
     }
 }

@@ -21,6 +21,11 @@ module.exports = {
       progress: 'x'
     }
 
+    console.log("===== LISTA ====")
+    console.log(List.get())
+    console.log("\n")
+    List.get().forEach(list => {console.log(list.itens)})
+
     // Retorna Pagina Home - Respondendo a page home
     // Passando para dentro da pagina as informações do "banco"
     return response.render("index", { lists: List.get(), profile: profile, statusCount: statusCount });
