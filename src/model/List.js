@@ -37,15 +37,19 @@ module.exports = {
     get(){
         return data;
     },
+    
     update(newList){
         data = newList;
     },
+
     updateItem(index, itens){
       data[index].itens =  itens;
     },
+
     delete(id){
       data = data.filter(list => Number(list.id) !== Number(id));
     },
+
     deleteItem(listId, itemId){
       // Encontrando o index no array List.data que corresponde a essa lista
       const indexListId = data.findIndex((list) => {
@@ -73,5 +77,13 @@ module.exports = {
           data[indexListId].itens[indexItemId].status = 'roxo'
       }
 
+    },
+
+    create(newJob){
+        data.push(newJob);
+    },
+
+    createItem(indexListId, newItem){
+        data[indexListId].itens.push(newItem);
     }
 }

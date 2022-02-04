@@ -36,11 +36,13 @@ module.exports = {
       // Criando um ID - Automatico
       const lastId = List.get()[List.get().length - 1] ? List.get()[List.get().length - 1].id + 1 : 1;
       
-      List.get().push({
+      // ADD na lista
+      List.create({
         id: lastId,
         name:request.body.name,
-        itens: []});     // ADD na lista
-
+        itens: []}
+      );
+ 
       return response.redirect("/") // Redireciona para /
     },
 
@@ -58,7 +60,8 @@ module.exports = {
       const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
 
       // ADD Item
-      List.get()[indexListId].itens.push({id: lastItem, name:request.body.name, status: 'roxo'});
+      let newItem = {id: lastItem, name:request.body.name, status: 'roxo'};
+      List.createItem(indexListId, newItem)
 
       return response.redirect("/") // Redireciona para /
     },

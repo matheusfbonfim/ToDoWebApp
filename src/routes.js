@@ -55,7 +55,7 @@ routes.post("/list/:id", ListController.update)
 routes.post("/list/:idList/item/:idItem", ListController.updateItem)
 
 // Requisição POST - Salvar alterações Profile
-routes.post("/profile", ListController.update)
+routes.post("/profile", ProfileController.update)
 
 
 // Requisição POST -  Deletar List

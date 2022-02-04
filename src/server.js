@@ -7,7 +7,7 @@ const server = express();
 // Importando rotas
 const routes = require('./routes')
 
-// Caminho
+// Caminho do arquivo
 const path = require('path')
 
 // ==================================
