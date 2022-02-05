@@ -12,10 +12,10 @@ const Profile = require('../model/Profile')
 const ListUtils = require('../utils/ListUtils');
 
 module.exports = {
-  index(request, response) {
+  async index(request, response) {
     // Informações do profile e das listas
-    const profile = Profile.get();
     const lists = List.get();
+    const profile = await Profile.get();
 
     // Objeto com valores para o sumário
     let statusCount = {

@@ -1,22 +1,38 @@
 // ============================================
 // ============= MODEL PROFILE ================
 // ============================================
-
-
 // Model retorna dados
 
-// Object Literal - Objeto com propriedades para o PERFIL
-let data = {
-  name: "Matheus",
-  avatar: "https://avatars.githubusercontent.com/u/64151259?s=400&u=fbe601800b4d997f5caab8f7f6372543512f0047&v=4",
-};
+const Database = require('../db/config.js') // Importa config. database
 
 
 module.exports = {
-    get(){
-        return data;
+    async get(){
+        const db = await Database();  // Inicia e espera conexão com o banco de dados
+
+        // Pegar informações do profile -> Usar get para ir pegar um dado somente
+        const data = await db.get(`SELECT * FROM PROFILE`);
+
+        db.close()  // Encerra conexão
+
+        // Retorna o objeto
+        return {
+          name: data.name,
+          avatar: data.avatar
+        };
     },
-    update(newData){
-      data = newData;
+
+    async update(newData){
+      const db = await Database();  // Inicia e espera conexão com o banco de dados
+      
+      // Update nos dados
+      db.run(`
+      UPDATE PROFILE
+        SET
+          name = "${newData.name}",
+          avatar = "${newData.avatar}"
+      `)
+
+      db.close()  // Encerra conexão
     }
 }

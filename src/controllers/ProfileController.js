@@ -6,16 +6,19 @@
 const Profile = require('../model/Profile')
 
 module.exports = {
-    index(request,response){
-      return response.render("profile", {profile: Profile.get()});
+    async index(request,response){
+      return response.render("profile", {profile: await Profile.get()});
     },
-    update(request, response){
+
+    async update(request, response){
       // Req body para pegar os dados
       const data = request.body;
-
+      
+      const profile = await Profile.get();
+    
       // Update
-      Profile.update({
-        ...Profile.get(),
+      await Profile.update({
+        ...profile,
         ...data
       })
       

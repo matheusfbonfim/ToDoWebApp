@@ -77,5 +77,5 @@ const initDb = {
   }
 }
 
-
+// Executa a função init
 initDb.init()
