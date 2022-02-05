@@ -12,66 +12,57 @@ module.exports = {
       return response.render("list");
     },
     
-    createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
+    async createItem(request, response){    // Retorna Pagina para Adicionar Item a Lista
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
       
+      const lists = await List.get();
+
       // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = List.get().findIndex((list) => {
+      const indexListId = lists.findIndex((list) => {
         return list.id == listId;
       }) 
 
       let list = {
         id: listId,
-        name: List.get()[indexListId].name
+        name: lists[indexListId].name
       };
 
       // Renderizando pagina passando informacão da lista especifica
       return response.render("item", { list });
     },
 
-    save(request, response){          // Adicionando Lista ao ToDo
+    async save(request, response){          // Adicionando Lista ao ToDo
       // request.body = {name: "dasdsa"}
-
-      // Criando um ID - Automatico
-      const lastId = List.get()[List.get().length - 1] ? List.get()[List.get().length - 1].id + 1 : 1;
       
       // ADD na lista
-      List.create({
-        id: lastId,
-        name:request.body.name,
+      await List.create({
+        name: request.body.name,
         itens: []}
       );
  
       return response.redirect("/") // Redireciona para /
     },
 
-    saveItem(request, response){      // Adicionndo Item em uma lista especifica
+    async saveItem(request, response){      // Adicionndo Item em uma lista especifica
       // Pegando ID específico
       const listId = request.params.idList;
 
-      // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = List.get().findIndex((list) => {
-        return list.id == listId;
-      }) 
-
-      // Criando um ID de Item conforme a lista - Automatico
-      const Itens = List.get()[indexListId].itens; // Array de itens da lista especifica
-      const lastItem = Itens[Itens.length - 1] ? Itens[Itens.length - 1].id + 1 : 1;
-
       // ADD Item
-      let newItem = {id: lastItem, name:request.body.name, status: 'roxo'};
-      List.createItem(indexListId, newItem)
+      let newItem = {name:request.body.name, status: 'roxo'};
+      await List.createItem(listId, newItem)
 
       return response.redirect("/") // Redireciona para /
     },
 
-    show(request, response){          // Retorna dados específicos para pagina editar list
+    async show(request, response){          // Retorna dados específicos para pagina editar list
       // Pegando ID específico
       const listId = request.params.id;
       
+      const lists = await List.get()
+
       // Verifica cada dado para encontrar o ID
-      const list = List.get().find(list => Number(list.id) == Number(listId));
+      const list = lists.find(list => Number(list.id) == Number(listId));
 
       // Caso lista nao exista
       if (!list){
@@ -82,15 +73,18 @@ module.exports = {
       return response.render("list-edit", { list });
     },
 
-    showItem(request, response){      // Retorna dados específicos para pagina de editar item
+    async showItem(request, response){      // Retorna dados específicos para pagina de editar item
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
       
       // Pegando ID específico do item da url
       const itemId = request.params.idItem;
       
+      // Recupera as listas do banco de dados
+      const lists = await List.get()
+
       // Verifica cada dado para encontrar o ID
-      const list = List.get().find(list => Number(list.id) == Number(listId));
+      const list = lists.find(list => Number(list.id) == Number(listId));
       
       // Caso lista nao exista
       if (!list){
@@ -108,12 +102,14 @@ module.exports = {
       return response.render("item-edit", { list, item });
     },
 
-    update(request, response){        // Enviar dados atualizados da lista conforme o ID para o index
+    async update(request, response){        // Enviar dados atualizados da lista conforme o ID para o banco
       // Pegando ID específico
       const listId = request.params.id;
 
+      const lists = await List.get()
+
       // Verifica cada dado para encontrar o ID
-      const list = List.get().find(list => Number(list.id) == Number(listId));
+      const list = lists.find(list => Number(list.id) == Number(listId));
 
       // Caso lista nao exista
       if (!list){
@@ -127,7 +123,7 @@ module.exports = {
       }
 
       // Percorre todas listas e atualiza somente conforme o ID
-      const newList = List.get().map( list => {
+      const newList = lists.map( list => {
         if (Number(list.id) === Number(listId)){
           list = updateList;
         }
@@ -141,12 +137,14 @@ module.exports = {
       response.redirect('/');
     },
 
-    updateItem(request, response){    // Enviar dados atualizados do item conforme o ID da lista e item para o index
+    async updateItem(request, response){    // Enviar dados atualizados do item conforme o ID da lista e item para o banco
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
 
+      const lists = await List.get()
+
       // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = List.get().findIndex((list) => {
+      const indexListId = lists.findIndex((list) => {
         return list.id == listId;
       }) 
 
@@ -154,7 +152,7 @@ module.exports = {
       const itemId = request.params.idItem;
 
       // Verifica cada dado para encontrar o ID
-      const list = List.get().find(list => Number(list.id) == Number(listId));
+      const list = lists.find(list => Number(list.id) == Number(listId));
 
       // Caso lista nao exista
       if (!list){
@@ -176,7 +174,7 @@ module.exports = {
       }
 
       // Percorre todas listas e atualiza somente conforme o ID
-      const newItens = List.get()[indexListId].itens.map( item => {
+      const newItens = lists[indexListId].itens.map( item => {
         if (Number(item.id) === Number(itemId)){
           item = updateItem;
         }
@@ -209,7 +207,7 @@ module.exports = {
     },
 
     checkItem(request, response){    // Deletando o item selecionado
-      console.log(request.body.checkbox)
+      // console.log(request.body.checkbox)
       
       const listId = request.params.idList;
       // Pegando ID específico do item da url

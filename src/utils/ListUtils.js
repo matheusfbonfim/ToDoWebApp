@@ -1,14 +1,16 @@
 module.exports = {
-  
-  getTotalItens(List){
+  getTotalItens(List) {
     let totalItens = 0;
 
     // Loop das listas
     for (let list of List) {
-      let itens = list.itens;    
-      totalItens += itens.length;
+      let itens = list.itens;
+
+      if (itens != null) {
+        totalItens += itens.length;
+      }
     }
 
     return totalItens;
-  }
-}
+  },
+};

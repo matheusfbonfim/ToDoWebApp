@@ -2,40 +2,64 @@
 // ============= MODEL LIST ===================
 // ============================================
 
-// Dados das listas
-let data = [
-  {
-    id: 1,
-    name: "To Do",
-    itens: [
-      {
-        id: 1,
-        name: "Fazer ToDo para o desafio da V360",
-        status: 'roxo',
-      },
-      {
-        id: 2,
-        name: "Não esquecer",
-        status: 'roxo',
-      },
-    ], 
-  },
-  {
-    id: 2,
-    name: "Lista 2",
-    itens: [
-      {
-        id: 1,
-        name: "Fazer ToDo para o desafio da V360",
-        status: 'roxo',
-      },
-    ],
-  },
-];
+
+const Database = require('../db/config.js') // Importa config. database
+
+
+
+// // Dados das listas
+// let data = [
+//   {
+//     id: 1,
+//     name: "To Do",
+//     itens: [
+//       {
+//         id: 1,
+//         name: "Fazer ToDo para o desafio da V360",
+//         status: 'roxo',
+//       },
+//       {
+//         id: 2,
+//         name: "Não esquecer",
+//         status: 'roxo',
+//       },
+//     ], 
+//   },
+//   {
+//     id: 2,
+//     name: "Lista 2",
+//     itens: [
+//       {
+//         id: 1,
+//         name: "Fazer ToDo para o desafio da V360",
+//         status: 'roxo',
+//       },
+//     ],
+//   },
+// ];
 
 module.exports = {
-    get(){
-        return data;
+    async get(){
+        const db = await Database()   // Iniciando conexão com o banco
+
+        // Consulta SQL -> All traz tudo que encontrar
+        const lists = await db.all(`SELECT * FROM LIST`);       // Listas
+
+        // Array de lista e seus respectivos itens
+        const newList =  lists.map(async (list) =>{
+          // Percorre o array de itens e retornando um array de itens conforme a lista
+          let itens_list = await db.all(`SELECT ITEM.id, ITEM.name, ITEM.status, ITEM.idList FROM ITEM WHERE ITEM.idList = ${list.id}`); 
+          
+          return {
+            id: list.id,
+            name: list.name,
+            itens: itens_list
+          }
+        });
+        
+        await db.close() // Fechando conexão do banco 
+      
+        return Promise.all(newList);
     },
     
     update(newList){
@@ -79,11 +103,19 @@ module.exports = {
 
     },
 
-    create(newJob){
-        data.push(newJob);
+    async create(newList){
+        const db = await Database(); // Conexão com o banco de dados
+
+        await db.run(`INSERT INTO LIST (name) VALUES ("${newList.name}")`)
+
+        await db.close()  // Fechando conexão do banco de dados
     },
 
-    createItem(indexListId, newItem){
-        data[indexListId].itens.push(newItem);
+    async createItem(ListId, newItem){
+        const db = await Database(); // Conexão com o banco de dados
+
+        await db.run(`INSERT INTO ITEM (name, status, idList) VALUES ("${newItem.name}", "${newItem.status}", "${ListId}")`)
+
+        await db.close()  // Fechando conexão do banco de dados
     }
 }
