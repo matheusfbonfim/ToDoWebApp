@@ -8,7 +8,7 @@ const Profile = require('../model/Profile')
 // Controles
 module.exports = {
   
-    create(request, response){        // Retorna Pagina para Adicionar Lista
+    create(request, response){              // Retorna Pagina para Adicionar Lista
       return response.render("list");
     },
     
@@ -106,32 +106,13 @@ module.exports = {
       // Pegando ID específico
       const listId = request.params.id;
 
-      const lists = await List.get()
-
-      // Verifica cada dado para encontrar o ID
-      const list = lists.find(list => Number(list.id) == Number(listId));
-
-      // Caso lista nao exista
-      if (!list){
-        return response.send("List Not Found!!")
-      }
-
       // Atualiza dados 
-      const updateList = {
-        ...list,
+      const updatedList = {
         name: request.body.name
-      }
-
-      // Percorre todas listas e atualiza somente conforme o ID
-      const newList = lists.map( list => {
-        if (Number(list.id) === Number(listId)){
-          list = updateList;
-        }
-        return list
-      });
+      };
 
       // Atualizando a lista
-      List.update(newList);
+      await List.update(updatedList, listId);
 
       // Redireciona para mesma tela
       response.redirect('/');
@@ -141,72 +122,40 @@ module.exports = {
       // Pegando ID específico da lista da url
       const listId = request.params.idList;
 
-      const lists = await List.get()
-
-      // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = lists.findIndex((list) => {
-        return list.id == listId;
-      }) 
-
       // Pegando ID específico do item da url
       const itemId = request.params.idItem;
 
-      // Verifica cada dado para encontrar o ID
-      const list = lists.find(list => Number(list.id) == Number(listId));
-
-      // Caso lista nao exista
-      if (!list){
-        return response.send("List Not Found!!")
-      }
-
-      // Verifica cada dado para encontrar o item
-      const item = list.itens.find(item => Number(item.id) == Number(itemId));
-
-      // Caso item nao exista
-      if (!item){
-        return response.send("Item Not Found!!")
-      }
-
       // Atualiza dados 
-      const updateItem = {
-        ...item,
+      const updatedItem = {
         name: request.body.name
       }
 
-      // Percorre todas listas e atualiza somente conforme o ID
-      const newItens = lists[indexListId].itens.map( item => {
-        if (Number(item.id) === Number(itemId)){
-          item = updateItem;
-        }
-        return item
-      });
-
       // Atualiza 
-      List.updateItem(indexListId, newItens);
+      await List.updateItem(itemId, listId, updatedItem);
 
       // Redireciona para mesma tela
       response.redirect('/');
     },
 
-    delete(request, response){        // Deletando a lista selecionada
+    async delete(request, response){        // Deletando a lista selecionada
       const listId = request.params.id;
     
-      List.delete(listId);
+      await List.delete(listId);
 
       return response.redirect('/');
     },
 
-    deleteItem(request, response){    // Deletando o item selecionado
+    async deleteItem(request, response){    // Deletando o item selecionado
       const listId = request.params.idList;
       // Pegando ID específico do item da url
       const itemId = request.params.idItem;
       
-      List.deleteItem(listId, itemId);
+      await List.deleteItem(listId, itemId);
       
       return response.redirect('/');
     },
 
-    checkItem(request, response){    // Deletando o item selecionado
+    checkItem(request, response){           // Deletando o item selecionado
       // console.log(request.body.checkbox)
       
       const listId = request.params.idList;

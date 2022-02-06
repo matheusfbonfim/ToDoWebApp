@@ -62,33 +62,54 @@ module.exports = {
         return Promise.all(newList);
     },
     
-    update(newList){
-        data = newList;
+    async update(updatedList, listId){
+        const db = await Database();  // Conexão do banco
+
+        await db.run(`
+        UPDATE LIST 
+          SET
+          name = "${updatedList.name}"
+          WHERE id = "${listId}"
+      `); 
+
+        await db.close(); // Fechando conexão
     },
 
-    updateItem(index, itens){
-      data[index].itens =  itens;
+    async updateItem(itemId, listId, updatedItem){
+      const db = await Database();  // Conexão do banco
+
+      await db.run(`
+      UPDATE ITEM 
+        SET
+        name = "${updatedItem.name}",
+        idList = ${listId}
+        WHERE id = "${itemId}"
+      `); 
+
+      await db.close(); // Fechando conexão
     },
 
-    delete(id){
-      data = data.filter(list => Number(list.id) !== Number(id));
+    async delete(id){
+      const db = await Database(); // Conexão com o banco de dados
+
+      db.run(`DELETE FROM LIST WHERE ID = ${id}`)
+
+      await db.close(); // Fechando a conexão com o banco de dados
     },
 
-    deleteItem(listId, itemId){
-      // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = data.findIndex((list) => {
-        return list.id == listId;
-      }) 
+    async deleteItem(listId, itemId){
+      const db = await Database(); // Conexão com o banco de dados
       
-      // Criando uma nova lista com todos itens menos o escolhido para ser excluído
-      data[indexListId].itens = data[indexListId].itens.filter(item => Number(item.id) !== Number(itemId));
+      db.run(`DELETE FROM ITEM WHERE id = ${itemId} AND idList = ${listId} `);
+
+      await db.close();
     },
 
     checkItem(listId, itemId){
       // Encontrando o index no array List.data que corresponde a essa lista
       const indexListId = data.findIndex((list) => {
         return list.id == listId;
-      }) 
+      });
 
       // Encontrando o index no array List.data que corresponde a essa lista
       const indexItemId = data[indexListId].itens.findIndex((item) => {
