@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="/styles/partials/home-page/buttons.css" />
     <link rel="stylesheet" href="/styles/partials/home-page/itens.css" />
     <link rel="stylesheet" href="/styles/pages/index.css" />
-
+    
+    <!-- Rodapé -->
+    <link rel="stylesheet" href="/styles/partials/home-page/fonts/style.css" />
+    <link rel="stylesheet" href="/styles/partials/home-page/footer.css">
+    
     <!-- Link Fonte - IBM Plex Sans e Inter -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -43,13 +47,17 @@
           <h2 class="only-recommendation">Homepage</h2>
           
           <!--Logo-->
-          <img id="logo" src="/images/logo.svg" alt="Logo"/>
+          <a href="/">
+            <img id="logo" src="/images/logo.svg" alt="Logo"/>
+          </a>
           
           <span id="info-ToDo360">
             <img src="/images/alert-octagon.svg" alt="Alerta" />
             ToDoList V360
             <img id = "pacman" src="/images/PACMAN.svg" alt="Alerta" />
           </span>
+
+         
           
           <!-- Subseção - Profile -->
           <a href="/profile" id="avatar-profile">
@@ -195,6 +203,34 @@
     </div>
     <!-- end container-->
   
-    <!-- end modal-wrapper -->
+    <!-- Rodapé-->
+    <footer class="section">
+      <div class="container grid">
+      <div class="brand">
+        <a class="logo logo-alt" href="https://virtual360.io/">
+          <img src="/images/logo_v360.png" alt="">
+        </a>
+        <p>&COPY;2021 V360.</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+      <div class="social grid">
+        <a href="https://www.instagram.com/somosv360/?hl=en" target="_blank">
+            <i class="icon-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/v-360/?originalSubdomain=br" target="_blank">
+            <i class="icon-linkedin"> </i>
+        </a>
+        <a href="https://www.youtube.com/channel/UCEvWf_Hv94Gyew8TQpuaCrg" target="_blank">
+            <i class="icon-youtube"></i>
+        </a>
+
+        <a href="https://github.com/matheusfbonfim/ToDoList" target="_blank">
+            <i class="icon-github"></i>
+        </a>
+      </div>
+      </div>
+    </footer>
+  
   </body>
 </html>
+

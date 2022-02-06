@@ -1,0 +1,94 @@
+/*=========== FOOTER ============*/
+footer {
+ background: var(--color-primary);
+}
+
+footer.section {
+ padding: 4rem 0;
+}
+
+footer .logo {
+ display: inline-block;
+ margin-bottom: 1.5rem;
+}
+
+footer .brand p {
+ color: white;
+ margin-bottom: 0.75rem;
+}
+
+footer i {
+ font-size: 1.5rem;
+ color: var(--color-secondary);
+}
+
+footer .social {
+ grid-auto-flow: column;
+ width: fit-content;
+ color: var(--color-secondary);
+}
+
+footer .social a {
+ transition: 0.3s;
+ display: inline-block;
+}
+
+footer .social a:hover {
+ transform: translateY(-5px);
+ font-size: 2rem;
+}
+
+/* Back to home button */
+.back-to-home {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    clip-path: circle();
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateY(150%);
+}
+   
+.back-to-home.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+.container{
+    flex:1;
+  }
+
+footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 30vh;
+}
+  
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.container.grid{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+
+.logo img{
+    width: 98px;
+    height: 84px;
+}
