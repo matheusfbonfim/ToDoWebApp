@@ -83,7 +83,7 @@ module.exports = {
         SET
         name = "${updatedItem.name}",
         idList = ${listId}
-        WHERE id = "${itemId}"
+        WHERE id = ${itemId}
       `); 
 
       await db.close(); // Fechando conexão
@@ -105,23 +105,31 @@ module.exports = {
       await db.close();
     },
 
-    checkItem(listId, itemId){
-      // Encontrando o index no array List.data que corresponde a essa lista
-      const indexListId = data.findIndex((list) => {
-        return list.id == listId;
-      });
+    async checkItem(itemId){
+      const db = await Database(); // Conexão com banco de dados
 
-      // Encontrando o index no array List.data que corresponde a essa lista
-      const indexItemId = data[indexListId].itens.findIndex((item) => {
-        return item.id == itemId;
-      }) 
+      const item = await db.get(`SELECT * FROM ITEM WHERE id = ${itemId}`);
+      
+      console.log(itemId)
+      console.log(item);
 
-      if(data[indexListId].itens[indexItemId].status == 'roxo'){
-          data[indexListId].itens[indexItemId].status = 'green';
-      }else if(data[indexListId].itens[indexItemId].status == 'green'){
-          data[indexListId].itens[indexItemId].status = 'roxo'
+      if(item.status == 'roxo'){
+        await db.run(`
+        UPDATE ITEM 
+          SET
+          status = "green"
+          WHERE id = ${itemId}
+        `); 
+      }else if(item.status == 'green'){
+        await db.run(`
+        UPDATE ITEM 
+          SET
+          status = "roxo"
+          WHERE id = ${itemId}
+        `); 
       }
 
+      await db.close();
     },
 
     async create(newList){

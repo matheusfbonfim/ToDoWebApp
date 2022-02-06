@@ -155,14 +155,14 @@ module.exports = {
       return response.redirect('/');
     },
 
-    checkItem(request, response){           // Deletando o item selecionado
+    async checkItem(request, response){           // Deletando o item selecionado
       // console.log(request.body.checkbox)
       
       const listId = request.params.idList;
       // Pegando ID específico do item da url
       const itemId = request.params.idItem;
       
-      List.checkItem(listId, itemId);
+      await List.checkItem(itemId);
 
       return response.redirect('/');
     }
