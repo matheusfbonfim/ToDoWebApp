@@ -36,7 +36,7 @@ server.use(express.urlencoded({extended: true}))
 // ======================================================
 server.use(routes)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1111;
 
 // Ligando o servidor - Porta 3000
 server.listen(port, () => console.log("rodando"));

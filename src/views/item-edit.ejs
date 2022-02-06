@@ -33,12 +33,12 @@
       <main>
         <form id="form-list" method="POST">
           <fieldset>
-            <legend>Dados do Item</legend>
+            <legend>Dados do Item - <strong style='color:var(--color-secondary);'><%= list.name %></strong></legend>
             <div class="separator light"></div>
 
             <div class="input-wrapper">
               <label for="name">Título do item</label>
-              <input type="text" id="name" name="name" value="<%= item.name %>"/>
+              <input type="text" id="name" name="name" maxlength="30" value="<%= item.name %>"/>
             </div>
 
             <div class="input-group">

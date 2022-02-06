@@ -6,38 +6,6 @@
 const Database = require('../db/config.js') // Importa config. database
 
 
-
-// // Dados das listas
-// let data = [
-//   {
-//     id: 1,
-//     name: "To Do",
-//     itens: [
-//       {
-//         id: 1,
-//         name: "Fazer ToDo para o desafio da V360",
-//         status: 'roxo',
-//       },
-//       {
-//         id: 2,
-//         name: "Não esquecer",
-//         status: 'roxo',
-//       },
-//     ], 
-//   },
-//   {
-//     id: 2,
-//     name: "Lista 2",
-//     itens: [
-//       {
-//         id: 1,
-//         name: "Fazer ToDo para o desafio da V360",
-//         status: 'roxo',
-//       },
-//     ],
-//   },
-// ];
-
 module.exports = {
     async get(){
         const db = await Database()   // Iniciando conexão com o banco
@@ -99,7 +67,8 @@ module.exports = {
 
     async deleteItem(listId, itemId){
       const db = await Database(); // Conexão com o banco de dados
-      
+      console.log("LIST ID:" + listId + " Item" + " ID:" + itemId);
+
       db.run(`DELETE FROM ITEM WHERE id = ${itemId} AND idList = ${listId} `);
 
       await db.close();
