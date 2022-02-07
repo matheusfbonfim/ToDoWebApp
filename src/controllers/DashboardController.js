@@ -25,9 +25,7 @@ module.exports = {
     }
 
     let status = '';
-    console.log("Listas")
-    console.log(lists)
-
+  
     // Atualizando valores do statusCount conforme o banco
     lists.map((list) => {
 
@@ -42,14 +40,7 @@ module.exports = {
     });
 
 
-    console.log("STATUS COUNT")
-    console.log(statusCount)
-
-    console.log("===== LISTA ====")
-    console.log(lists)
-    console.log("\n")
-
-    lists.forEach(list => {console.log(list.itens)})
+    // lists.forEach(list => {console.log(list.itens)})
 
     // Retorna Pagina Home - Respondendo a page home
     // Passando para dentro da pagina as informações do "banco"

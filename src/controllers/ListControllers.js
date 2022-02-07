@@ -3,7 +3,7 @@
 // ============================================
 
 const List = require('../model/List');
-const Profile = require('../model/Profile')
+const Profile = require('../model/Profile');
 
 // Controles
 module.exports = {
@@ -155,7 +155,7 @@ module.exports = {
       return response.redirect('/');
     },
 
-    async checkItem(request, response){           // Deletando o item selecionado
+    async checkItem(request, response){     // Deletando o item selecionado
       // console.log(request.body.checkbox)
       
       const listId = request.params.idList;
